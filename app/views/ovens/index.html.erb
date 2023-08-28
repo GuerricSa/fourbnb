@@ -3,7 +3,9 @@
   <br>
   <% @ovens.each do |oven| %>
     <%= link_to oven_path(oven) do %>
-    <%= oven.brand %>
+      <div>
+        <%= oven.title %>, <%= oven.brand %>, proposé par <%= oven.user.first_name %>
+      </div>
     <% end %>
   <% end %>
   <br>

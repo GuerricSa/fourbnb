@@ -1,0 +1,22 @@
+Marque : <%= @oven.brand %>
+<br>
+Adresse : <%= @oven.address %>
+<br>
+Description : <%= @oven.description %>
+<br>
+Prix : <%= @oven.price %> €/h
+<br>
+Photos :
+<br>
+<% @oven.photos.each do |photo| %>
+<%= cl_image_tag photo.key, height: 150, crop: :fill %>
+<% end %>
+<br>
+Proposé par : <%= @oven.user.first_name %>
+
+<% if current_user == @oven.user %>
+  <%= link_to "Modifier", edit_oven_path(@oven) %>
+  <%= link_to "Supprimer", oven_path(@oven), data: {turbo_method: :delete, turbo_confirm: "Es-tu sûr.e ?"} %>
+<% end %>
+
+<%= link_to "Retour à la page d'accueil", root_path %>

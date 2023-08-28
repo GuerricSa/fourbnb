@@ -3,5 +3,5 @@ Rails.application.routes.draw do
   root to: "ovens#index"
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
-  resources :oven
+  resources :ovens
 end

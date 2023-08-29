@@ -7,28 +7,31 @@
 #   Character.create(name: "Luke", movie: movies.first)
 
 require 'faker'
+require "open-uri"
 
-puts "Destroying all users and ovens"
+puts "Destroying all users and ovens..."
 Oven.destroy_all
 User.destroy_all
 puts "Done!"
 
-puts "Creating users"
-5.times do
+puts "Creating users..."
+2.times do
   user = User.new(
     email: Faker::Internet.email,
     first_name: Faker::Name.first_name,
     password: "123456"
   )
-  user.save!
+  file = URI.open(Faker::Avatar.image)
+  user.avatar.attach(io: file, filename: "avatar#{user.id}.png", content_type: "image/png")
+  user.save
 end
 puts "Completed!"
 
-puts "Creating ovens"
+puts "Creating ovens..."
 User.all.each do |user|
   number_of_times = (0..3).to_a.sample
   number_of_times.times do
-    Oven.create(
+    oven = Oven.new(
       brand: Faker::Appliance.brand,
       user_id: user.id,
       address: Faker::Address.full_address,
@@ -36,6 +39,9 @@ User.all.each do |user|
       title: Faker::Commerce.product_name,
       price: (1..50).to_a.sample
     )
+    file = URI.open("https://images.unsplash.com/photo-1575219799974-8c4264b905f8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80")
+    oven.photos.attach(io: file, filename: "photo#{oven.id}.png", content_type: "image/png")
+    oven.save
   end
 end
 puts "Finished!"

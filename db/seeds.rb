@@ -15,7 +15,7 @@ User.destroy_all
 puts "Done!"
 
 puts "Creating users..."
-3.times do
+10.times do
   user = User.new(
     email: Faker::Internet.email,
     first_name: Faker::Name.first_name,

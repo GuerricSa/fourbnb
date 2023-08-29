@@ -2,11 +2,12 @@
     overflow: hidden;
     background: white;
     box-shadow: 0 0 15px rgba(0,0,0,0.2);
+    // height: 387px;
+    // width: 100%;
   }
   
   .card-trip > img {
-    height: 387px;
-    width: 100%;
+    height: 23rem;
     object-fit: cover;
   }
   
@@ -40,7 +41,7 @@
 
 .cards {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr ;
     grid-gap: 20px;
   }
   
@@ -49,12 +50,19 @@
     .cards {
       grid-template-columns: 1fr;
     }
+    .card-trip > img{
+        height: 23rem;
+    }
   }
   
   // Small devices (landscape phones, 576px and up)
   @media (min-width: 576px) {
     .cards {
       grid-template-columns: 1fr;
+    }
+
+    .card-trip > img{
+        height: 23rem;
     }
   }
   
@@ -75,6 +83,6 @@
   // Extra large devices (large desktops, 1200px and up)
   @media (min-width: 1200px) {
     .cards {
-      grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+      grid-template-columns: 1fr 1fr 1fr 1fr ;
     }
   }

@@ -24,8 +24,8 @@
           <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
             <%= link_to "Mes reservations", "#", class: "dropdown-item" %>
             <%= link_to "Mettre mon four en location", "#", class: "dropdown-item" %>
-            <%= link_to "Mon compte", "#", class: "dropdown-item" %>
-            <%= link_to "Log out", "#", class: "dropdown-item", data: {turbo_method: :delete} %>
+            <%= link_to "Mon compte", edit_user_registration_path, class: "dropdown-item" %>
+            <%= link_to "Log out", destroy_user_session_path, class: "dropdown-item", data: {turbo_method: :delete} %>
           </div>
         </li>
       <%# else %>

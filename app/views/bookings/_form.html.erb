@@ -1,11 +1,8 @@
 <%= simple_form_for [@oven, @booking] do |f| %>
     <%= f.input :date,
                 as: :string,
-                input_html: { data: {
-                  controller: "datepicker",
-                  enableTime: true,
-                  dateFormat: "Y-m-d H:i"
-                } }
+                input_html: { data: { controller: "datepicker" }
+                }
     %>
     <%= f.button :submit %>
   <% end %>

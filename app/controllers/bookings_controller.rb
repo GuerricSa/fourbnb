@@ -9,7 +9,6 @@ class BookingsController < ApplicationController
     @booking = Booking.new(booking_params)
     @booking.oven = @oven
     @booking.user = current_user
-    @booking.status = "pending"
     if @booking.save
       redirect_to oven_path(@booking.oven)
     else

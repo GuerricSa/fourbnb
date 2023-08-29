@@ -1,13 +1,28 @@
 <div class="container">
-  <h1>Tous les fours : </h1>
-  <br>
-  <% @ovens.each do |oven| %>
-    <%= link_to oven_path(oven) do %>
-      <div>
-        <%= oven.title %>, <%= oven.brand %>, proposé par <%= oven.user.first_name %>
-      </div>
+  <div class ="cards">
+    <% @ovens.each do |oven| %>
+      <%= link_to oven_path(oven) do %>
+        <%# <%= render "ovens/card", oven: oven %>
+        <div class="card-trip">
+          <% if oven.photos.size != 0 %>
+            <%= cl_image_tag oven.photos[0].key, crop: :fill %>
+          <% else %>
+          <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/greece.jpg" />
+          <% end %>
+          <div class="card-trip-infos">
+            <div>
+              <h2><%= oven.title %></h2>
+              <p><%= oven.address %></p>
+            </div>
+            <h2 class="card-trip-pricing"><%= oven.price %> €/h</h2>
+            <%# if oven.user.avatar %>
+              <%#= cl_image_tag oven.user.avatar.key, class: "card-trip-user avatar-bordered", crop: :fill %>
+            <%# else %>
+              <img src="https://kitt.lewagon.com/placeholder/users/krokrob" class="card-trip-user avatar-bordered" />
+            <%# end %>
+          </div>
+        </div>
+      <% end %>
     <% end %>
-  <% end %>
-  <br>
-  <%= link_to "Créer une annonce", new_oven_path %>
+  </div>
 </div>

@@ -1,6 +1,6 @@
 <div class="navbar navbar-expand-sm navbar-light navbar-lewagon">
     <%= link_to root_path, class: "navbar-brand" do %>
-      <%= image_tag "https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/logo.png", class: "ms-4" %>
+      <%= image_tag "logo_chef.svg", class: "ms-4" %>
     <% end %>
 
   <div class="justify-content-center d-flex">
@@ -16,23 +16,22 @@
     <ul class="navbar-nav ms-auto">
       <%# if user_signed_in? %>
         <li class="nav-item active">
-          <%# Ajouter le path %>
-          <%= link_to "Mettre mon four en location", "#", class: "nav-link me-5" %>
+          <%= link_to "Mettre mon four sur fourbnb", new_oven_path, class: "nav-link me-5" %>
         </li>
         <li class="nav-item dropdown">
-          <%# Ajouter le lien vers l'avatar %>
+          <%#= cl_image_tag current_user.avatar.key, class: "avatar dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
           <%= image_tag "https://kitt.lewagon.com/placeholder/users/arthur-littm", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
           <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
             <%= link_to "Mes reservations", "#", class: "dropdown-item" %>
             <%= link_to "Mettre mon four en location", "#", class: "dropdown-item" %>
-            <%= link_to "Mon compte", "#", class: "dropdown-item" %>
-            <%= link_to "Log out", "#", class: "dropdown-item", data: {turbo_method: :delete} %>
+            <%= link_to "Mon compte", edit_user_registration_path, class: "dropdown-item" %>
+            <%= link_to "Log out", destroy_user_session_path, class: "dropdown-item", data: {turbo_method: :delete} %>
           </div>
         </li>
       <%# else %>
-        <!--li class="nav-item"-->
+        <%# <li class="nav-item"> %>
           <%#= link_to "Login", new_user_session_path, class: "nav-link" %>
-        <!--/li-->
+        <%# </li> %>
       <%# end %>
     </ul>
   </div>

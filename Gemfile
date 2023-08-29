@@ -3,6 +3,9 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby "3.1.2"
 
+# Faker for seeds of users and ovens
+gem 'faker'
+
 # Image upload for oven 'photo' and user 'avatar'
 gem "cloudinary"
 

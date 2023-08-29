@@ -3,6 +3,9 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby "3.1.2"
 
+# Image upload for oven 'photo' and user 'avatar'
+gem "cloudinary"
+
 # Authentication
 gem "devise"
 

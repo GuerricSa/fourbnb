@@ -1,0 +1,13 @@
+<div class="container">
+  <h1>Tous les fours : </h1>
+  <br>
+  <% @ovens.each do |oven| %>
+    <%= link_to oven_path(oven) do %>
+      <div>
+        <%= oven.title %>, <%= oven.brand %>, proposé par <%= oven.user.first_name %>
+      </div>
+    <% end %>
+  <% end %>
+  <br>
+  <%= link_to "Créer une annonce", new_oven_path %>
+</div>

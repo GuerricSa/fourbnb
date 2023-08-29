@@ -15,7 +15,7 @@ User.destroy_all
 puts "Done!"
 
 puts "Creating users..."
-2.times do
+3.times do
   user = User.new(
     email: Faker::Internet.email,
     first_name: Faker::Name.first_name,
@@ -29,7 +29,7 @@ puts "Completed!"
 
 puts "Creating ovens..."
 User.all.each do |user|
-  number_of_times = (0..3).to_a.sample
+  number_of_times = (1..3).to_a.sample
   number_of_times.times do
     oven = Oven.new(
       brand: Faker::Appliance.brand,

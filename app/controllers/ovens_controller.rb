@@ -43,6 +43,6 @@ class OvensController < ApplicationController
   end
 
   def oven_params
-    params.require(:oven).permit(:title, :brand, :address, :description, :price, :photos)
+    params.require(:oven).permit(:title, :brand, :address, :description, :price, photos: [])
   end
 end

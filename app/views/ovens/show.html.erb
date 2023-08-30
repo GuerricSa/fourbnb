@@ -33,13 +33,15 @@
             <div>
               <p> rating/commentaires</p>
             </div>
+            <a type="button" class="btn-cta p-2 mt-4" data-action="click->toggle#move" data-toggle-target="togglableElementButton">Réserver</a>
+
           </div>
 
           <div class="d-none" data-toggle-target="togglableElementForm">
             <%= render "layouts/form_booking", booking: @booking %>
+            <a href="#" class="position-absolute top-0 end-0"><i class="fa-solid fa-x"></i></a>
           </div>
 
-          <a type="button" class="btn-cta p-2 mt-4" data-action="click->toggle#move">Réserver</a>
         </div>
       </div>
 
@@ -51,7 +53,6 @@
 
       <button type="button" class="btn btn-outline-secondary"><%= link_to "Supprimer", oven_path(@oven), data: {turbo_method: :delete, turbo_confirm: "Es-tu sûr.e ?"} %></button>
       <% end %>
-      <button type="button" class="btn btn-outline-secondary"><%= link_to "Retour à la page d'accueil", root_path %></button>
   </div>
 
 </div>

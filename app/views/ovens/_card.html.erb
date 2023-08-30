@@ -14,7 +14,7 @@
     </div>
     <h2 class="card-trip-pricing"><%= oven.price %> €/h</h2>
     <% if oven.user.avatar %>
-      <%= cl_image_tag oven.user.avatar.key, class: "card-trip-user avatar-bordered", crop: :fill %>
+      <%= cl_image_tag oven.user.avatar.key, class: "card-trip-user avatar-bordered", crop: "fill", fetch_format: :auto %>
     <% else %>
       <img src="https://kitt.lewagon.com/placeholder/users/krokrob" class="card-trip-user avatar-bordered" />
     <% end %>

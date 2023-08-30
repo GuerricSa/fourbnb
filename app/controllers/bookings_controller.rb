@@ -1,4 +1,10 @@
 class BookingsController < ApplicationController
+  def index
+    @bookings_as_renter = Booking.where(user: current_user).order(date: :desc)
+    my_ovens = Oven.where(user: current_user)
+    @bookings_as_owner = Booking.where(oven: my_ovens).order(date: :desc)
+  end
+
   def new
     @oven = Oven.find(params[:oven_id])
     @booking = Booking.new

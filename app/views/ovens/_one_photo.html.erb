@@ -1,0 +1,4 @@
+    <div class="show-uniq-photo">
+      <% @oven.photos.first %>
+      <%= cl_image_tag @oven.photos.first.key, crop: :fill %>
+    </div>

@@ -1,0 +1,22 @@
+<div class ="show-photo">
+  <div class="show-first-photo">
+    <% @oven.photos.first %>
+    <%= cl_image_tag @oven.photos.first.key, crop: :fill %>
+  </div>
+
+  <div class="grid-photos">
+
+    <div class="grid-photos-1">
+      <% @oven.photos[1..2].each do |photo| %>
+      <%= cl_image_tag photo.key, crop: :fill %>
+      <% end %>
+    </div>
+
+    <div class="grid-photos-2">
+      <% @oven.photos[3..-1].each do |photo| %>
+      <%= cl_image_tag photo.key, crop: :fill %>
+      <% end %>
+    </div>
+
+  </div>
+</div>

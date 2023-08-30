@@ -15,7 +15,7 @@ User.destroy_all
 puts "Done!"
 
 puts "Creating users..."
-10.times do
+3.times do
   user = User.new(
     email: Faker::Internet.email,
     first_name: Faker::Name.first_name,
@@ -27,9 +27,20 @@ puts "Creating users..."
 end
 puts "Completed!"
 
+puts "Creating user 'truc'..."
+truc = User.new(
+  email: "truc@gmail.com",
+  first_name: "Maité",
+  password: "123456"
+)
+truc_avatar = URI.open("https://www.parismatch.com/lmnr/var/pm/public/media/image/2022/03/02/07/La-Cuisine-des-Mousquetaires-Que-devient-la-cuisiniere-Maite.jpg?VersionId=Bx1BN4WaCcUbOhuMd3mq5Y9ijidHeqJm")
+truc.avatar.attach(io: truc_avatar, filename: "maite.png", content_type: "image/png")
+truc.save
+puts "'truc' exists!"
+
 puts "Creating ovens..."
 User.all.each do |user|
-  number_of_times = (1..3).to_a.sample
+  number_of_times = (1..5).to_a.sample
   number_of_times.times do
     oven = Oven.new(
       brand: Faker::Appliance.brand,

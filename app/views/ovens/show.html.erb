@@ -1,62 +1,51 @@
-<div class = "container"> 
+<div class = "container">
 
-  <div class = "show-info"> 
+  <div class = "show-info">
     <h2><%= @oven.title %></h1>
 
-    <div class ="d-flex"> 
+    <div class ="d-flex">
       Rating : <%= @oven.price%>
       Adresse : <%= @oven.address %>
     </div>
   </div>
-  
-  <div class ="show-photo"> 
 
-    <div class="show-first-photo">
-      <% @oven.photos.first %>
-      <%= cl_image_tag @oven.photos.first.key, crop: :fill %>
-    </div>
 
-    <div class="grid-photos">
+    <% if @oven.photos.length >= 5 %>
+      <%= render "ovens/five_photos" %>
+    <% elsif @oven.photos.length >= 1 && @oven.photos.length < 5 %>
+      <%= render "ovens/one_photo" %>
+    <% end %>
 
-      <div class="grid-photos-1">
-        <% @oven.photos[1..2].each do |photo| %>
-        <%= cl_image_tag photo.key, crop: :fill %>
-        <% end %>
-      </div>
 
-      <div class="grid-photos-2">
-        <% @oven.photos[3..-1].each do |photo| %>
-        <%= cl_image_tag photo.key, crop: :fill %>
-        <% end %>
-      </div>
+  <div id="div-text" class="d-flex justify-content-between mt-3" data-controller="toggle">
 
-    </div>
-  </div> 
-
-  <div class="d-flex justify-content-between"> 
-
-    <div class = "mt-3 "> 
+    <div id= "description" class="mt-3" data-toggle-target="togglableElementbis">
       <p>Marque : <%= @oven.brand %></p>
       <p>Description : <%= @oven.description %></p>
       <p>Proposé par : <%= @oven.user.first_name %></p>
     </div>
 
-    <div class ="mt-3 "> 
-      <div class="card w-100">
+      <div id="card-booking" class="card">
         <div class="card-body">
-          <h5 class="card-title"> <strong><%= @oven.price %></strong> €/h </h5>
-          <div>
-            <p> rating/commentaires</p>
+
+          <div data-toggle-target="togglableElement">
+            <h5 class="card-title"> <strong><%= @oven.price %></strong> €/h </h5>
+            <div>
+              <p> rating/commentaires</p>
+            </div>
           </div>
-          <p class="card-text">Ici on met un form date/heure</p>
-          <a href="#" class="btn btn-primary">Réserver</a>
+
+          <div class="d-none" data-toggle-target="togglableElementForm">
+            <%= render "layouts/form_booking", booking: @booking %>
+          </div>
+
+          <a type="button" class="btn-cta p-2 mt-4" data-action="click->toggle#move">Réserver</a>
         </div>
       </div>
-    </div>
 
   </div>
 
-  <div class = "mt-3 d-flex justify-content-end"> 
+  <div class = "mt-3 d-flex justify-content-end">
     <% if current_user == @oven.user %>
       <button type="button" class="btn btn-outline-secondary"><%= link_to "Modifier", edit_oven_path(@oven) %></button>
 
@@ -64,6 +53,5 @@
       <% end %>
       <button type="button" class="btn btn-outline-secondary"><%= link_to "Retour à la page d'accueil", root_path %></button>
   </div>
+
 </div>
-
-

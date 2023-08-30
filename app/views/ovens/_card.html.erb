@@ -1,12 +1,24 @@
 <div class="card-trip">
-  <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/greece.jpg" />
+  <% if oven.photos.size != 0 %>
+    <div id="card-img" style="background-image: url(<%= cl_image_path(oven.photos[0].key)%>)">
+    </div>
+  <% else %>
+    <div id="card-img" style="background-image: url('https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/greece.jpg')">
+    </div>
+  <% end %>
+
   <div class="card-trip-infos">
-    <div>
+    <div id="card-trip-title-adress">
       <h2><%= oven.title %></h2>
       <p><%= oven.address %></p>
     </div>
     <h2 class="card-trip-pricing"><%= oven.price %> €/h</h2>
-    <img src="https://kitt.lewagon.com/placeholder/users/krokrob" class="card-trip-user avatar-bordered" />
+    <% if oven.user.avatar %>
+      <%= cl_image_tag oven.user.avatar.key, class: "card-trip-user avatar-bordered", crop: "fill", fetch_format: :auto %>
+    <% else %>
+      <img src="https://kitt.lewagon.com/placeholder/users/krokrob" class="card-trip-user avatar-bordered" />
+    <% end %>
   </div>
+
 </div>
 <%# <%= cl_image_tag oven.photos.first.key, crop: :fill %>

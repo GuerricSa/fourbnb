@@ -10,5 +10,6 @@ export default class extends Controller {
     console.log(this.togglableElementTarget)
     this.togglableElementTarget.classList.toggle("d-none")
     this.togglableElementFormTarget.classList.toggle("d-none")
+    this.togglableElementFormTarget.classList.toggle("position-relative")
   }
 }

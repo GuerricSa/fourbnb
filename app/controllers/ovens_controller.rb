@@ -5,7 +5,7 @@ class OvensController < ApplicationController
   def index
     @ovens = Oven.all
     if params[:query].present?
-      sql_subquery = "title ILIKE :query OR description ILIKE :query"
+      sql_subquery = "title ILIKE :query OR description ILIKE :query OR address ILIKE :query"
       @ovens = @ovens.where(sql_subquery, query: "%#{params[:query]}%")
     else
       @ovens = Oven.all

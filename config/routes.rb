@@ -8,4 +8,6 @@ Rails.application.routes.draw do
   end
 
   resources :bookings, only: %i[destroy index]
+  patch "bookings/:id/accept", to: "bookings#accept", as: :booking_accept
+  patch "bookings/:id/decline", to: "bookings#decline", as: :booking_decline
 end

@@ -1,4 +1,7 @@
 <li class="list-group-item d-flex justify-content-between align-items-start">
+  <div class="align-self-center">
+    <%= cl_image_tag booking.oven.photos.first.key, width: 50, height: 50, crop: "fill", fetch_format: :auto, class: "orange-border" %>
+  </div>
   <div class="ms-2 me-auto">
     <div class="fw-bold"><%= booking.oven.title %></div>
     <div><strong>Propriétaire : </strong><%= booking.oven.user.first_name %></div>

@@ -1,0 +1,20 @@
+<div class="container">
+  <div>
+    <h2>Mes réservations</h2>
+    <ul class="list-group">
+      <% @bookings_as_renter.each do |booking| %>
+        <%= render(partial: "list_renter", locals: {booking: booking}) %>
+      <% end %>
+    </ul>
+  </div>
+  <% if @bookings_as_owner.size > 0 %>
+    <div class="mt-3 mb-5">
+      <h2>Mes fours en location</h2>
+      <ul class="list-group">
+        <% @bookings_as_owner.each do |booking| %>
+          <%= render(partial: "list_owner", locals: {booking: booking}) %>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+</div>

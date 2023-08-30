@@ -2,6 +2,7 @@ class Booking < ApplicationRecord
   STATUS = %w[pending accepted declined].freeze
   belongs_to :oven
   belongs_to :user
+  # belongs_to :owner
 
   validates_associated :oven
   validates_associated :user

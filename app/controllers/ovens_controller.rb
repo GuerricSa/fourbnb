@@ -3,10 +3,17 @@ class OvensController < ApplicationController
   skip_before_action :authenticate_user!, only: :index
 
   def index
-    @ovens = Oven.all
     if params[:query].present?
       sql_subquery = "title ILIKE :query OR description ILIKE :query OR address ILIKE :query"
-      @ovens = @ovens.where(sql_subquery, query: "%#{params[:query]}%")
+      @ovens = Oven.where(sql_subquery, query: "%#{params[:query]}%")
+      @markers = @ovens.geocoded.map do |oven|
+        {
+          lat: oven.latitude,
+          lng: oven.longitude,
+          info_window_html: render_to_string(partial: "info_window", locals: { oven: oven }),
+          marker_html: render_to_string(partial: "marker")
+        }
+      end
     else
       @ovens = Oven.all
     end
@@ -41,6 +48,10 @@ class OvensController < ApplicationController
   def destroy
     @oven.destroy
     redirect_to root_path, status: :see_other
+  end
+
+  def my_ovens
+    @ovens = Oven.where(user: current_user)
   end
 
   private

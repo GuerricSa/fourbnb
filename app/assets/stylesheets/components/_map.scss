@@ -1,0 +1,27 @@
+.mapboxgl-popup {
+  max-width: 200px;
+}
+
+#card-img-window {
+  height: 60%;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+#card-window {
+  margin: 0;
+  padding: 15px;
+  width: 250px;
+}
+
+.mapboxgl-popup-content {
+  margin: 0;
+  padding: 0 !important;
+}
+
+#window-footer {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+}

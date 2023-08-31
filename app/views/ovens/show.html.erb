@@ -26,20 +26,22 @@
     </div>
 
       <div id="card-booking" class="card">
-        <div class="card-body">
+        <div class="card-body" data-controller="total-price">
 
           <div data-toggle-target="togglableElement">
-            <h5 class="card-title"> <strong><%= @oven.price %></strong> €/h </h5>
+            <h5 class="card-title"> <strong data-total-price-target="price"><%= @oven.price %></strong> €/h </h5>
             <div>
               <p> rating/commentaires</p>
             </div>
+            <a type="button" class="btn-cta p-2 mt-4" data-action="click->toggle#move" data-toggle-target="togglableElementButton">Réserver</a>
+
           </div>
 
-          <div class="d-none" data-toggle-target="togglableElementForm">
+          <div class="d-none" data-toggle-target="togglableElementForm" data-controller="button">
             <%= render "layouts/form_booking", booking: @booking %>
+            <button class="cross-button position-absolute top-0 end-0" data-action="click->toggle#move"><i class="fa-solid fa-x"></i></button>
           </div>
 
-          <a type="button" class="btn-cta p-2 mt-4" data-action="click->toggle#move">Réserver</a>
         </div>
       </div>
 
@@ -51,7 +53,6 @@
 
       <button type="button" class="btn btn-outline-secondary"><%= link_to "Supprimer", oven_path(@oven), data: {turbo_method: :delete, turbo_confirm: "Es-tu sûr.e ?"} %></button>
       <% end %>
-      <button type="button" class="btn btn-outline-secondary"><%= link_to "Retour à la page d'accueil", root_path %></button>
   </div>
 
   <h5>Evaluations</h5>

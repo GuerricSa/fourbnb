@@ -3,7 +3,7 @@
     <div id="card-img" style="background-image: url(<%= cl_image_path(oven.photos[0].key)%>)">
     </div>
   <% else %>
-    <div id="card-img" style="background-image: url('https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/greece.jpg')">
+    <div id="card-img" style="background-image: url('/assets/fourbnb.png')">
     </div>
   <% end %>
 
@@ -11,8 +11,9 @@
     <div id="card-trip-title-adress">
       <h2><%= oven.title %></h2>
       <p><%= oven.address %></p>
+      <p class="underline-link">avis (10)</p>
     </div>
-    <h2 class="card-trip-pricing"><%= oven.price %> €/h</h2>
+    <p class="card-trip-pricing"><span id="view_price"> <%= oven.price %> </span> €/h</p>
     <% if oven.user.avatar %>
       <%= cl_image_tag oven.user.avatar.key, class: "card-trip-user avatar-bordered", crop: "fill", fetch_format: :auto %>
     <% else %>
@@ -21,4 +22,3 @@
   </div>
 
 </div>
-<%# <%= cl_image_tag oven.photos.first.key, crop: :fill %>

@@ -1,4 +1,11 @@
 <div class="container" data-turbo="false">
+  <% if params[:query].present? %>
+    <div style="width: 100%; height: 600px;" class="mb-3"
+         data-controller="map"
+         data-map-markers-value="<%= @markers.to_json %>"
+         data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
+    </div>
+  <% end %>
   <div class ="cards">
     <% @ovens.each do |oven| %>
       <%= link_to oven_path(oven) do %>

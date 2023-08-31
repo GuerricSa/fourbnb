@@ -1,44 +1,51 @@
-<li class="list-group-item d-flex justify-content-between align-items-start">
-  <div class="align-self-center">
-    <%= cl_image_tag booking.user.avatar.key, width: 50, height: 50, crop: "fill", fetch_format: :auto, class: "orange-border booking-avatar" %>
-  </div>
-  <div class="ms-2 me-auto">
-    <% case booking.status %>
-    <% when "pending" %>
-      <div><strong><%= booking.user.first_name %></strong> veut réserver un de tes fours !</div>
-    <% when "declined" %>
-      <div>Tu as refusé la réservation d'un de tes fours à <strong><%= booking.user.first_name %></strong>.</div>
-    <% when "accepted" %>
-      <div>Tu as accepté la réservation d'un de tes fours à <strong><%= booking.user.first_name %></strong> !</div>
-    <% end %>
-
-    <div>
-    <% time_format = "%-d %b %Y à %Hh%M" %>
-    Le <%= booking.date.strftime(time_format) %>, pour <%= booking.time %> heures
+<% bookings_as_owner.each do |booking| %>
+  <li class="list-group-item d-flex justify-content-between align-items-start bg-white">
+    <div class="align-self-center">
+      <%= cl_image_tag booking.user.avatar.key, width: 50, height: 50, crop: "fill", fetch_format: :auto, class: "orange-border booking-avatar" %>
     </div>
-    <% if booking.status == "pending" %>
+    <div class="ms-2 me-auto">
+      <% case booking.status %>
+      <% when "pending" %>
+        <div><strong><%= booking.user.first_name %></strong> veut réserver un de tes fours !</div>
+      <% when "declined" %>
+        <div>Tu as refusé la réservation d'un de tes fours à <strong><%= booking.user.first_name %></strong>.</div>
+      <% when "accepted" %>
+        <div>Tu as accepté la réservation d'un de tes fours à <strong><%= booking.user.first_name %></strong> !</div>
+      <% end %>
+
       <div>
-        <%= button_to booking_accept_path(booking), method: :patch, class: "btn btn-outline-success btn-sm" do %>
-          Accepter
-        <% end %>
-        <%= button_to booking_decline_path(booking), method: :patch, class: "btn btn-outline-danger btn-sm" do %>
-          Refuser
-        <% end %>
+      <% time_format = "%-d %b %Y à %Hh%M" %>
+      Le <%= booking.date.strftime(time_format) %>, pour <%= booking.time %> heures
       </div>
-    <% else %>
-      <div>
-        <%= link_to booking_path(booking), data: {turbo_method: :delete, turbo_confirm: "Confirmes-tu la suppression de cette réservation ?"} do %>
-          <button type="button" class="btn btn-outline-warning btn-sm">Supprimer</button>
-        <% end %>
-      </div>
-    <% end %>
-  </div>
-  <% case booking.status %>
-  <% when "pending" %>
-    <span class="badge bg-warning rounded-pill"><i class="fa-regular fa-hourglass-half"></i></span>
-  <% when "declined" %>
-    <span class="badge bg-danger rounded-pill"><i class="fa-regular fa-circle-xmark"></i></span>
-  <% when "accepted" %>
-    <span class="badge bg-success rounded-pill"><i class="fa-regular fa-circle-check"></i></span>
-  <% end %>
-</li>
+      <% if booking.status == "pending" %>
+        <div>
+          <%= button_to booking_accept_path(booking), method: :patch, class: "btn btn-outline-success btn-sm" do %>
+            Accepter
+          <% end %>
+          <%= button_to booking_decline_path(booking), method: :patch, class: "btn btn-outline-danger btn-sm" do %>
+            Refuser
+          <% end %>
+        </div>
+      <% else %>
+        <div>
+          <%= link_to booking_path(booking), data: {turbo_method: :delete, turbo_confirm: "Confirmes-tu la suppression de cette réservation ?"} do %>
+            <button type="button" class="btn btn-outline-warning btn-sm">Supprimer</button>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+    <div class="position-absolute me-3 end-0 ">
+      <% case booking.status %>
+      <% when "pending" %>
+        <span class="badge bg-warning rounded-pill"><i class="fa-regular fa-hourglass-half"></i></span>
+      <% when "declined" %>
+        <span class="badge bg-danger rounded-pill"><i class="fa-regular fa-circle-xmark"></i></span>
+      <% when "accepted" %>
+        <span class="badge bg-success rounded-pill"><i class="fa-regular fa-circle-check"></i></span>
+      <% end %>
+    </div>
+    <div class="position-absolute m-3 end-0 bottom-0" >
+      <h3><%= booking.total %> €</h3>
+    </div>
+  </li>
+<% end %>

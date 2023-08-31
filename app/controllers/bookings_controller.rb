@@ -2,9 +2,21 @@ class BookingsController < ApplicationController
   before_action :set_booking, only: %i[destroy accept decline]
 
   def index
-    @bookings_as_renter = Booking.where(user: current_user).order(date: :desc)
-    my_ovens = Oven.where(user_id: current_user)
-    @bookings_as_owner = Booking.where(oven: my_ovens).order(date: :desc)
+    bookings_as_renter = Booking.where(user: current_user).order(date: :desc)
+    @past_bookings_as_renter = bookings_as_renter.select do |rental|
+      rental[:date] < Time.now
+    end
+    @future_bookings_as_renter = bookings_as_renter.select do |rental|
+      rental[:date] >= Time.now
+    end
+    my_ovens = Oven.where(user: current_user)
+    bookings_as_owner = Booking.where(oven: my_ovens).order(date: :desc)
+    @past_bookings_as_owner = bookings_as_owner.select do |rental|
+      rental[:date] < Time.now
+    end
+    @future_bookings_as_owner = bookings_as_owner.select do |rental|
+      rental[:date] >= Time.now
+    end
   end
 
   def create
@@ -12,6 +24,7 @@ class BookingsController < ApplicationController
     @booking = Booking.new(booking_params)
     @booking.oven = @oven
     @booking.user = current_user
+    @booking.total = (@booking.time * @booking.oven.price)
     if @booking.save
       redirect_to bookings_path
     else

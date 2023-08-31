@@ -1,9 +1,28 @@
 <%= simple_form_for [@oven, @booking] do |f| %>
     <%= f.input :date,
                 as: :string,
-                input_html: { data: { controller: "datepicker" }
+                input_html: {
+                  data: {
+                    controller: "datepicker",
+                    action: "change->button#enabled",
+                    button_target: "date"
+                  }
                 }
     %>
-    <%= f.input :time %>
-    <%= f.button :submit, class: "btn-cta" %>
+    <%= f.input :time,
+                :label => "Temps de location :",
+                input_html: {
+                  min: '1',
+                  default:'1',
+                  data: {
+                    action: "click->total-price#count keyup->total-price#count change->button#enabled",
+                    total_price_target: "hours",
+                    button_target: "hours"
+                  }
+                }
+    %>
+    <h5 data-total-price-target="total">Total : </h5>
+    <%= f.button :submit, 'Envoyer au propriétaire', class: "btn-cta",
+                  'data-button-target': "button"
+    %>
   <% end %>

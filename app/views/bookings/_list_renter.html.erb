@@ -17,7 +17,7 @@
       </div>
       <div>
         <% if booking[:date] < Time.now %>
-          <%= link_to root_path, class: "btn btn-outline-success btn-sm" do %>
+          <%= link_to new_booking_review_path(booking), class: "btn btn-outline-success btn-sm" do %>
             Donner mon avis
           <% end %>
         <% end %>

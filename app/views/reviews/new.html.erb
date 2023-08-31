@@ -1,0 +1,7 @@
+<div class ="container">
+    <h2>Nouvelle évaluation</h2>
+    <%= simple_form_for [@booking, @review] do |f| %>
+    <%= f.input :content, label: false %>
+    <%= f.submit "Envoyer", class: "btn btn-primary" %>
+    <% end %>
+</div>

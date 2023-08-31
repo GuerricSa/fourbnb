@@ -54,4 +54,19 @@
       <button type="button" class="btn btn-outline-secondary"><%= link_to "Retour à la page d'accueil", root_path %></button>
   </div>
 
+  <h5>Evaluations</h5>
+  <ul class="list-group review">
+    <% @oven.reviews.each do |review| %>
+      <li class="list-group-item">
+        <% if review.user && review.user.avatar %>
+          <%= cl_image_tag review.user.avatar.key, class: "card-trip-user avatar-bordered", crop: "fill", fetch_format: :auto %>
+        <% else %>
+          <img src="https://kitt.lewagon.com/placeholder/users/krokrob" class="card-trip-user avatar-bordered" />
+        <% end %>
+        <%= review.user.first_name %>
+        <%= review.content %>
+      </li>
+    <% end %>
+  </ul>
+
 </div>

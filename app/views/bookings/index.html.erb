@@ -1,20 +1,54 @@
-<div class="container">
-  <div>
-    <h2>Mes réservations</h2>
-    <ul class="list-group">
-      <% @bookings_as_renter.each do |booking| %>
-        <%= render(partial: "list_renter", locals: {booking: booking}) %>
+<div class="container" data-controller="bookings">
+  <h2>Mes réservations</h2>
+
+  <ul class="list-inline tabs-underlined">
+    <li class="tab-underlined active" data-action="click->bookings#future" data-bookings-target="futureTab">
+      À venir
+    </li>
+    <li class="tab-underlined" data-action="click->bookings#past" data-bookings-target="pastTab">
+      Historique
+    </li>
+  </ul>
+
+  <%# cette div s'affiche si on est sur l'onglet "A venir" %>
+  <div data-bookings-target="futureBookings">
+    <div>
+      <% if @future_bookings_as_renter.size > 0 %>
+        <ul class="list-group">
+          <%= render(partial: "list_renter", locals: {bookings_as_renter: @future_bookings_as_renter}) %>
+        </ul>
+      <% else %>
+        Aucune réservation de four à venir
       <% end %>
-    </ul>
-  </div>
-  <% if @bookings_as_owner.size > 0 %>
-    <div class="mt-3 mb-5">
-      <h2>Mes fours en location</h2>
-      <ul class="list-group">
-        <% @bookings_as_owner.each do |booking| %>
-          <%= render(partial: "list_owner", locals: {booking: booking}) %>
-        <% end %>
-      </ul>
     </div>
-  <% end %>
+    <% if @future_bookings_as_owner.size > 0 %>
+      <div class="mt-3 mb-5">
+        <h2>Mes fours en location</h2>
+        <ul class="list-group">
+          <%= render(partial: "list_owner", locals: {bookings_as_owner: @future_bookings_as_owner}) %>
+        </ul>
+      </div>
+    <% end %>
+  </div>
+
+  <%# cette div s'affiche si on est sur l'onglet "Historique" %>
+  <div class="d-none" data-bookings-target="pastBookings">
+    <div>
+      <% if @past_bookings_as_renter.size > 0 %>
+        <ul class="list-group">
+          <%= render(partial: "list_renter", locals: {bookings_as_renter: @past_bookings_as_renter}) %>
+        </ul>
+      <% else %>
+        Aucune réservation de four dans votre historique
+      <% end %>
+    </div>
+    <% if @past_bookings_as_owner.size > 0 %>
+      <div class="mt-3 mb-5">
+        <h2>Mes fours en location</h2>
+        <ul class="list-group">
+            <%= render(partial: "list_owner", locals: {bookings_as_owner: @past_bookings_as_owner}) %>
+        </ul>
+      </div>
+    <% end %>
+  </div>
 </div>

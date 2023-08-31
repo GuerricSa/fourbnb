@@ -3,13 +3,8 @@ class BookingsController < ApplicationController
 
   def index
     @bookings_as_renter = Booking.where(user: current_user).order(date: :desc)
-    my_ovens = Oven.where(user: current_user)
+    my_ovens = Oven.where(user_id: current_user)
     @bookings_as_owner = Booking.where(oven: my_ovens).order(date: :desc)
-  end
-
-  def new
-    @oven = Oven.find(params[:oven_id])
-    @booking = Booking.new
   end
 
   def create
@@ -21,7 +16,7 @@ class BookingsController < ApplicationController
       redirect_to bookings_path
     else
       @bookings = @oven.bookings
-      render :new, status: :unprocessable_entity
+      redirect_to booking_path(@oven)
     end
   end
 

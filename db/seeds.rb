@@ -79,6 +79,8 @@ AVIS = [
 ]
 
 puts "Destroying all users and ovens..."
+Review.destroy_all
+Booking.destroy_all
 Oven.destroy_all
 User.destroy_all
 puts "Done!"

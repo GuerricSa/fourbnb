@@ -3,6 +3,9 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby "3.1.2"
 
+# Takes the oven address and returns its GPS coordinates
+gem 'geocoder'
+
 # Faker for seeds of users and ovens
 gem 'faker'
 

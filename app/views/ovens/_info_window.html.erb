@@ -1,0 +1,23 @@
+<div id="card-window" class="card-trip">
+  <% if oven.photos.size != 0 %>
+    <div id="card-img-window" class="card-img-top" style="background-image: url(<%= cl_image_path(oven.photos[0].key)%>)">
+    </div>
+  <% else %>
+    <div id="card-img-window" style="background-image: url('/assets/fourbnb.png')">
+    </div>
+  <% end %>
+
+  <div class="card-body">
+    <div id="window-inner-text">
+      <h5 class="card-title"><%= oven.title %></h5>
+      <p class="card-text"><%= oven.description[0, 40] %>...</p>
+    </div>
+    <div id="window-footer">
+      <div>
+        <p class="fs-6"><%= oven.price %> €/h</p>
+        <p><i class="fa-solid fa-star" style="color: $oven-orange;"></i> 4,2 (48)</p>
+      </div>
+      <%= link_to "Réserver", oven_path(oven), class: "btn btn-cta" %>
+    </div>
+  </div>
+</div>

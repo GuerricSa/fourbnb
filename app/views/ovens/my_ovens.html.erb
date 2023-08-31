@@ -1,0 +1,14 @@
+<div class="container">
+  <% if @ovens.length < 1 %>
+    <h2>Tu n'as pas encore ajouté de four ...</h2>
+    <%= link_to "Mettre mon four sur fourbnb", new_oven_path, class: "me-5 btn-cta p-2" %>
+  <% else %>
+    <div class ="cards">
+      <% @ovens.each do |oven| %>
+        <%= link_to oven_path(oven) do %>
+          <%= render "ovens/card", oven: oven %>
+        <% end %>
+      <% end %>
+    </div>
+  <% end %>
+</div>

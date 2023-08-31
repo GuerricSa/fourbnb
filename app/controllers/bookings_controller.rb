@@ -19,11 +19,6 @@ class BookingsController < ApplicationController
     end
   end
 
-  def new
-    @oven = Oven.find(params[:oven_id])
-    @booking = Booking.new
-  end
-
   def create
     @oven = Oven.find(params[:oven_id])
     @booking = Booking.new(booking_params)
@@ -34,7 +29,7 @@ class BookingsController < ApplicationController
       redirect_to bookings_path
     else
       @bookings = @oven.bookings
-      render :new, status: :unprocessable_entity
+      redirect_to booking_path(@oven)
     end
   end
 

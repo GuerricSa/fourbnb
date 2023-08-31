@@ -50,6 +50,10 @@ class OvensController < ApplicationController
     redirect_to root_path, status: :see_other
   end
 
+  def my_ovens
+    @ovens = Oven.where(user: current_user)
+  end
+
   private
 
   def set_oven

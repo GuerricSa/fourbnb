@@ -15,7 +15,7 @@
     <%= render "ovens/one_photo" %>
   <% end %>
 
-  <div id="div-text" class="d-flex justify-content-between mt-3" data-controller="toggle">
+  <div id="div-text" class="d-flex mt-3" data-controller="toggle">
 
     <div id= "description" data-toggle-target="togglableElementbis">
       <div class= "info-1 d-flex justify-content-between">
@@ -30,16 +30,23 @@
         <%= @oven.description %>
       </div>
       <div class="info-3">
-        <h5>Evaluations</h5>
+        <h5><i class="fa-solid fa-star"></i> <%= @oven.moyenne %> (<%= @oven.nb_avis %> commentaires)</h5>
         <ul class="list-group review">
           <% @oven.reviews.each do |review| %>
             <li class="list-group-item">
-              <% if review.booking.user && review.booking.user.avatar %>
-                <%= cl_image_tag review.booking.user.avatar.key, class: "card-trip-user avatar-bordered", crop: "fill", fetch_format: :auto %>
-              <% else %>
-                <img src="https://kitt.lewagon.com/placeholder/users/krokrob" class="card-trip-user avatar-bordered" />
-              <% end %>
-              <%= review.booking.user.first_name %>
+              <div class= "d-flex">
+                <div class="me-2">
+                  <% if review.booking.user && review.booking.user.avatar %>
+                    <%= cl_image_tag review.booking.user.avatar.key, class: "card-trip-user avatar-bordered", crop: "fill", fetch_format: :auto %>
+                  <% else %>
+                    <img src="https://kitt.lewagon.com/placeholder/users/krokrob" class="card-trip-user avatar-bordered" />
+                  <% end %>
+                </div>
+                <div>
+                  <strong><%= review.booking.user.first_name %></strong>
+                  <p><%= review.booking.date.strftime("%B %Y").downcase %></p>
+                </div>
+              </div>
               <%= review.content %>
             </li>
           <% end %>

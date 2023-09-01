@@ -11,9 +11,18 @@
     <div id="card-trip-title-adress">
       <h2><%= oven.title %></h2>
       <p><%= oven.address %></p>
-      <p class="underline-link">avis (10)</p>
+      <p class="underline-link">
+      <% if oven.moyenne.nan? %>
+      <i class="fa-regular fa-star" style="color: #ee792d;"></i>
+      <%= "" %>
+      <% else %>
+      <i class="fa-solid fa-star" style="color: #ee792d;"></i>
+      <%= oven.moyenne %>
+      <% end %>
+      (<%= oven.reviews.length %> avis)
+      </p>
     </div>
-    <p class="card-trip-pricing"><span id="view_price"> <%= oven.price %> </span> €/h</p>
+    <p class="card-trip-pricing"><span id="view_price"><%= oven.price %></span> €/h</p>
     <% if oven.user.avatar %>
       <%= cl_image_tag oven.user.avatar.key, class: "card-trip-user avatar-bordered", crop: "fill", fetch_format: :auto %>
     <% else %>

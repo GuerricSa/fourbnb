@@ -8,4 +8,20 @@ class Oven < ApplicationRecord
 
   geocoded_by :address
   after_validation :geocode, if: :will_save_change_to_address?
+
+  def moyenne
+    ratings = []
+    if self.reviews
+      self.reviews.each do |review|
+        ratings << review.rating
+      end
+      return ratings.sum.fdiv(ratings.size).round(1)
+    else
+      return "Ø"
+    end
+  end
+
+  def nb_avis
+    self.reviews.size
+  end
 end

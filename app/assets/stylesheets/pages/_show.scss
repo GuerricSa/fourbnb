@@ -16,3 +16,17 @@
   box-shadow: none;
   background-color: $light-gray;
 }
+
+.global-card {
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+}
+
+.bottom-card {
+  display: flex;
+  justify-content: flex-end;
+  background-color: white;
+}
+
+.bottom-card .btn-outline-warning {
+  margin-right: 2px;
+}

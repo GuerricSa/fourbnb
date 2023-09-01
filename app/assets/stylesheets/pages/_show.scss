@@ -47,6 +47,7 @@
   background-color: $light-gray;
 }
 
+
 #inside-card-booking {
   width: 100%;
   display: flex;
@@ -59,4 +60,17 @@
     box-shadow: none;
     border: none;
   }
+
+.global-card {
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+}
+
+.bottom-card {
+  display: flex;
+  justify-content: flex-end;
+  background-color: white;
+}
+
+.bottom-card .btn-outline-warning {
+  margin-right: 2px;
 }

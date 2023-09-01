@@ -127,7 +127,6 @@ puts "Creating bookings"
     date: Time.now + (3600 * rand(1..168)),
     time: rand(1..5),
     status: %w[pending accepted declined].sample,
-    
   )
   booking.total = booking.time * Oven.find(booking.oven_id).price
   booking.save

@@ -11,6 +11,9 @@
 .show-uniq-photo img {
   display: block;
   margin: auto;
+  height: 256px;
+  object-fit: cover;
+  border-radius: 5px;
 }
 
 .show-first-photo{
@@ -47,7 +50,7 @@
         margin-right: 6px;
     }
     &:last-child{
-        margin-right: 0;
+        margin-right: 0px;
     }
 }
 .grid-photos-1{
@@ -59,11 +62,11 @@ a{
     color: black;
 }
 
-.btn-primary{
-    background-color: #EE792D;
-    border: white;
-}
+// .btn-primary{
+//     background-color: #EE792D;
+//     border: white;
+// }
 
-.btn-primary:hover{
-    background-color: #c4601e;
-}
+// .btn-primary:hover{
+//     background-color: #c4601e;
+// }

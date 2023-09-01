@@ -1,4 +1,7 @@
-    <div class="show-uniq-photo">
-      <% @oven.photos.first %>
-      <%= cl_image_tag @oven.photos.first.key, crop: :fill %>
-    </div>
+<div class="show-uniq-photo">
+  <% if @oven.photos.size > 0 %>
+    <%= cl_image_tag @oven.photos.first.key, crop: :fill %>
+  <% else %>
+    <%= image_tag 'fourbnb.png' %>
+  <% end %>
+</div>

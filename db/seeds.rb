@@ -121,15 +121,16 @@ puts "Finished!"
 
 puts "Creating bookings"
 50.times do
-  Booking.create(
+  booking = Booking.new(
     oven_id: Oven.all.sample.id,
     user_id: User.all.sample.id,
     date: Time.now + (3600 * rand(1..168)),
     time: rand(1..5),
     status: %w[pending accepted declined].sample,
     
-    total: time * Oven.find(oven_id).price
   )
+  booking.total = booking.time * Oven.find(booking.oven_id).price
+  booking.save
 end
 puts "finished"
 

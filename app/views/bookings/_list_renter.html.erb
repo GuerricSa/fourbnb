@@ -21,7 +21,7 @@
       <div>
         <% if booking[:date] < Time.now %>
           <%= link_to new_booking_review_path(booking), class: "btn btn-outline-success btn-sm" do %>
-            Avis
+            Donner mon avis
           <% end %>
         <% end %>
         <%= link_to booking_path(booking), data: {turbo_method: :delete, turbo_confirm: "Confirmes-tu la suppression de cette réservation ?"} do %>

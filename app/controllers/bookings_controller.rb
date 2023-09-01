@@ -2,7 +2,7 @@ class BookingsController < ApplicationController
   before_action :set_booking, only: %i[destroy accept decline]
 
   def index
-    bookings_as_renter = Booking.where(user: current_user).order(date: :desc)
+    bookings_as_renter = Booking.where(user: current_user).order(date: :asc)
     @past_bookings_as_renter = bookings_as_renter.select do |rental|
       rental[:date] < Time.now
     end

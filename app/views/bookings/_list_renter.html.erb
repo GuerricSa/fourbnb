@@ -8,17 +8,20 @@
       <% end %>
     </div>
     <div class="ms-2 me-auto">
-      <div class="fw-bold"><%= booking.oven.title %></div>
+      <div class="fs-5 fw-bold"><%= link_to oven_path(booking.oven), id: "linked-oven-title" do  %>
+        <%= booking.oven.title %>
+      <% end %>
+      </div>
       <div><strong>Propriétaire : </strong><%= booking.oven.user.first_name %></div>
       <div><strong>Adresse : </strong><%= booking.oven.address %></div>
       <div>
-      <% time_format = "%-d %b %Y à %Hh%M" %>
-      Le <%= booking.date.strftime(time_format) %>, pour <%= booking.time %> heures
+        <% time_format = "%-d %b %Y à %Hh%M" %>
+        Le <%= booking.date.strftime(time_format) %>, pour <%= booking.time %> heures
       </div>
       <div>
         <% if booking[:date] < Time.now %>
           <%= link_to new_booking_review_path(booking), class: "btn btn-outline-success btn-sm" do %>
-            Donner mon avis
+            Avis
           <% end %>
         <% end %>
         <%= link_to booking_path(booking), data: {turbo_method: :delete, turbo_confirm: "Confirmes-tu la suppression de cette réservation ?"} do %>

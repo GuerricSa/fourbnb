@@ -11,7 +11,7 @@
 
   <% if @oven.photos.length >= 5 %>
     <%= render "ovens/five_photos" %>
-  <% elsif @oven.photos.length >= 1 && @oven.photos.length < 5 %>
+  <% else %>
     <%= render "ovens/one_photo" %>
   <% end %>
 
@@ -33,7 +33,7 @@
         <h5><i class="fa-solid fa-star"></i> <%= @oven.moyenne %> (<%= @oven.nb_avis %> commentaires)</h5>
         <ul class="list-group review">
           <% @oven.reviews.each do |review| %>
-            <li class="list-group-item">
+            <li class="list-group-item p-3">
               <div class= "d-flex">
                 <div class="me-2">
                   <% if review.booking.user && review.booking.user.avatar %>
@@ -55,11 +55,10 @@
     </div>
 
     <div id="card-booking" class="card rounded align-self-start" data-controller="total-price">
-      <div data-toggle-target="togglableElement">
+      <div id="inside-card-booking" data-toggle-target="togglableElement">
         <h5 class="card-title"> <strong data-total-price-target="price"><%= @oven.price %></strong> € par heure </h5>
-        <a type="button" class="btn-cta p-2 mt-4" data-action="click->toggle#move" data-toggle-target="togglableElementButton">Réserver</a>
+        <button class="btn-cta p-2 mt-4" data-action="click->toggle#move" data-toggle-target="togglableElementButton">Réserver</button>
       </div>
-
       <div class="d-none" data-toggle-target="togglableElementForm" data-controller="button">
         <%= render "layouts/form_booking", booking: @booking %>
         <button class="cross-button position-absolute top-0 end-0" data-action="click->toggle#move"><i class="fa-solid fa-x"></i></button>

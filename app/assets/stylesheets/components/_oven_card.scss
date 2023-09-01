@@ -44,17 +44,27 @@
   width: 40px;
 }
 
+.card-trip .card-trip-pricing {
+  padding-right: 10px;
+  padding-bottom: 10px;
+}
+
 .card-trip-infos {
-  margin-top: 1rem;
+  margin-top: 0.5rem;
 }
 
 #card-trip-title-adress {
   width: 75%;
 }
 
+#card-trip-title-adress > * {
+  padding-bottom: 7px;
+}
+
 #view_price {
-  font-size: 1.1rem;
+  font-size: 1.3rem;
   opacity: 1;
+  font-weight: bolder;
 }
 
 .underline-link:hover {

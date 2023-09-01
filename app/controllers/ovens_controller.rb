@@ -1,6 +1,6 @@
 class OvensController < ApplicationController
   before_action :set_oven, only: %i[show edit update destroy]
-  skip_before_action :authenticate_user!, only: :index
+  skip_before_action :authenticate_user!, only: %i[show index]
 
   def index
     if params[:query].present?

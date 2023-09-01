@@ -11,13 +11,13 @@ class Oven < ApplicationRecord
 
   def moyenne
     ratings = []
-    if self.reviews
+    if self.reviews.size > 0
       self.reviews.each do |review|
         ratings << review.rating
       end
       return ratings.sum.fdiv(ratings.size).round(1)
     else
-      return "Ø"
+      return ""
     end
   end
 

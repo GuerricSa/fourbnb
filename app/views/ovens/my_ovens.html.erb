@@ -5,9 +5,15 @@
   <% else %>
     <div class ="cards">
       <% @ovens.each do |oven| %>
-        <%= link_to oven_path(oven) do %>
-          <%= render "ovens/card", oven: oven %>
-        <% end %>
+        <div class= "global-card">
+          <%= link_to oven_path(oven) do %>
+            <%= render "ovens/card", oven: oven %>
+          <% end %>
+        <div class= "bottom-card p-2">
+          <button type="button" class="btn btn-outline-warning"><%= link_to "Modifier", edit_oven_path(oven) %></button>
+          <button type="button" class="btn btn-outline-danger"><%= link_to "Supprimer", oven_path(oven), data: {turbo_method: :delete, turbo_confirm: "Es-tu sûr.e ?"} %></button>
+        </div>
+      </div>
       <% end %>
     </div>
   <% end %>

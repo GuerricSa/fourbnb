@@ -59,12 +59,12 @@
   <ul class="list-group review">
     <% @oven.reviews.each do |review| %>
       <li class="list-group-item">
-        <% if review.user && review.user.avatar %>
-          <%= cl_image_tag review.user.avatar.key, class: "card-trip-user avatar-bordered", crop: "fill", fetch_format: :auto %>
+        <% if review.booking.user && review.booking.user.avatar %>
+          <%= cl_image_tag review.booking.user.avatar.key, class: "card-trip-user avatar-bordered", crop: "fill", fetch_format: :auto %>
         <% else %>
           <img src="https://kitt.lewagon.com/placeholder/users/krokrob" class="card-trip-user avatar-bordered" />
         <% end %>
-        <%= review.user.first_name %>
+        <%= review.booking.user.first_name %>
         <%= review.content %>
       </li>
     <% end %>

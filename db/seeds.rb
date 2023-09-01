@@ -126,7 +126,9 @@ puts "Creating bookings"
     user_id: User.all.sample.id,
     date: Time.now + (3600 * rand(1..168)),
     time: rand(1..5),
-    status: %w[pending accepted declined].sample
+    status: %w[pending accepted declined].sample,
+    
+    total: time * Oven.find(oven_id).price
   )
 end
 puts "finished"

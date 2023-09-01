@@ -15,9 +15,9 @@
     <div id="window-footer">
       <div>
         <p class="fs-6"><%= oven.price %> €/h</p>
-        <p><i class="fa-solid fa-star" style="color: $oven-orange;"></i> 4,2 (48)</p>
+        <p><i class="fa-solid fa-star" style="color: $oven-orange;"></i> <%= oven.moyenne %> (<%= oven.nb_avis %>)</p>
       </div>
-      <%= link_to "Réserver", oven_path(oven), class: "btn btn-cta" %>
+      <%= link_to "Voir plus", oven_path(oven), class: "btn btn-cta" %>
     </div>
   </div>
 </div>
